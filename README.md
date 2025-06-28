@@ -9,7 +9,7 @@ Groovy is required.
 chmod +x wikidata-release-status.groovy
 ```
 
-## Fetch release status
+## Fetch release status in JSON
 
 ```bash
 ./wikidata-release-status.groovy
