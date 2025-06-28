@@ -52,10 +52,12 @@ lbzcat wikidata-20250618-truthy-BETA.nt.bz2 | LC_ALL=C sort -u -S 80g | lbzip2 -
 ```
 
 ## Fast Diffs from Sorted Data
+Uncompressed wikidata is ~1TB. Running from compressed files works on conventional hardware.
 
+This script uses bash process substitution `<(...)` to stream compressed data.
 ```bash
-LC_ALL=C comm -23 <(wikidata-20250606-truthy-BETA.sorted.nt.bz2) <(lbzcat wikidata-20250530-truthy-BETA.sorted.nt.bz2) | lbzip2 -cz > added.nt.bz2
-LC_ALL=C comm -13 <(wikidata-20250606-truthy-BETA.sorted.nt.bz2) <(lbzcat wikidata-20250530-truthy-BETA.sorted.nt.bz2) | lbzip2 -cz > removed.nt.bz2
+LC_ALL=C comm -23 <(lbzcat wikidata-20250606-truthy-BETA.sorted.nt.bz2) <(lbzcat wikidata-20250530-truthy-BETA.sorted.nt.bz2) | lbzip2 -cz > added.nt.bz2
+LC_ALL=C comm -13 <(lbzcat wikidata-20250606-truthy-BETA.sorted.nt.bz2) <(lbzcat wikidata-20250530-truthy-BETA.sorted.nt.bz2) | lbzip2 -cz > removed.nt.bz2
 ```
 
 You can use the diffs to patch data in your SPARQL endpoint.
