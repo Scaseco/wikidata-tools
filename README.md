@@ -32,6 +32,8 @@ chmod +x wikidata-release-status.groovy
 }
 ```
 
+Latest release is at array index 0.
+
 Use `jq` for post processing, such as:
 
 ```bash
